@@ -14,7 +14,8 @@ async function getPostTitles(month, day) {
     .children()
     .map((i, el) => holidays.push($(el).text()))
 
-  return holidays
+  // remove christian feast day because every fucking day is christian feast day
+  return holidays.filter(h => !h.includes('Christian Feast Day'))
 };
 
 module.exports.handler = async (event, ctx, cb) => {
@@ -27,4 +28,3 @@ module.exports.handler = async (event, ctx, cb) => {
     throw err
   }
 }
-

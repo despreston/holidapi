@@ -5,7 +5,7 @@
 `month` (required)(string) Month string in long format, case in-sensitive
 
 
-`day` (required)(number) Day in dd format.
+`day` (required)(number) Day in d format.
 
 ### Example
 `holidapi.des.wtf?m=april&d=29`

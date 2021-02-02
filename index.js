@@ -8,9 +8,9 @@ async function getPostTitles(month, day) {
   const $ = cheerio.load(data)
   const holidays = []
 
-  $('#Holidays_and_observances')
+  const x = $('#Holidays_and_observances')
     .parent()
-    .next()
+    .nextUntil('.reflist', 'ul')
     .children()
     .map((i, el) => holidays.push($(el).text()))
 
@@ -18,7 +18,7 @@ async function getPostTitles(month, day) {
   return holidays.filter(h => !h.toUpperCase().includes('CHRISTIAN FEAST DAY'))
 };
 
-module.exports.handler = async (event, ctx, cb) => {
+module.exports.handler = async event => {
   try {
     const params = qs.parse(event.rawQueryString)
     console.log(`Fetching holidays for ${params.m} ${params.d}`)
